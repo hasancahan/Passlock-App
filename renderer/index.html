@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HD Passlock - Güvenli Şifre Yöneticisi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Login Sayfası -->
+    <div id="loginPage" class="page active">
+
+        
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-lock login-icon"></i>
+                <h1>HD Passlock</h1>
+                <p>Güvenli Şifre Yöneticisi</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="masterPassword" placeholder="Ana Şifrenizi Girin" required>
+                </div>
+                
+                <div class="login-actions">
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Giriş Yap
+                    </button>
+                    
+                    <div class="forgot-password">
+                        <button type="button" id="forgotPasswordBtn" class="forgot-password-btn">
+                            <i class="fas fa-question-circle"></i>
+                            Şifrenizi mi unuttunuz?
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p>İlk kez kullanıyorsanız, ana şifreniz otomatik olarak kaydedilecektir. <br>Ana şifrenizi saklayınız.</p>
+
+                
+                <div class="company-info">
+                    <p class="powered-by">
+                        <i class="fas fa-code"></i>
+                        Powered by <a href="https://hdynamicx.com" target="_blank" class="company-link">HDynamicX</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Sayfa -->
+    <div id="mainPage" class="page">
+        <header class="main-header">
+            <div class="header-left">
+                <h1><i class="fas fa-lock"></i> HD Passlock</h1>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Şifre ara...">
+                </div>
+            </div>
+            
+                <div class="header-right">
+        <button id="addPasswordBtn" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Yeni Şifre
+        </button>
+        <button id="manageCategoriesBtn" class="btn btn-info">
+            <i class="fas fa-tags"></i>
+            Kategoriler
+        </button>
+        <button id="settingsBtn" class="btn btn-warning">
+            <i class="fas fa-cog"></i>
+            Ayarlar
+        </button>
+        <button id="logoutBtn" class="btn btn-secondary">
+            <i class="fas fa-sign-out-alt"></i>
+            Çıkış
+        </button>
+    </div>
+        </header>
+
+        <main class="main-content">
+            <div class="sidebar">
+                <div class="category-filter">
+                    <h3>Kategoriler</h3>
+                    <ul id="categoryList">
+                        <li class="category-item active" data-category="all">
+                            <i class="fas fa-list"></i>
+                            Tümü
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="passwords-header">
+                    <h2>Şifreler</h2>
+                    <span id="passwordCount" class="password-count">0 şifre</span>
+                </div>
+
+                <div id="passwordsList" class="passwords-list">
+                    <!-- Şifreler buraya dinamik olarak eklenecek -->
+                </div>
+
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-lock-open"></i>
+                    <h3>Henüz şifre eklenmemiş</h3>
+                    <p>İlk şifrenizi eklemek için "Yeni Şifre" butonuna tıklayın.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Şifre Ekleme/Düzenleme Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Yeni Şifre Ekle</h3>
+                <button id="closeModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="passwordForm" class="password-form">
+                <input type="hidden" id="passwordId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">Başlık *</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Kategori</label>
+                        <select id="category">
+                            <option value="İş">İş</option>
+                                                    <option value="İş">İş</option>
+                        <option value="Sosyal Medya">Sosyal Medya</option>
+                        <option value="Finans">Finans</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username">Kullanıcı Adı</label>
+                        <input type="text" id="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Şifre *</label>
+                        <div class="password-input-group">
+                            <input type="password" id="password" required>
+                            <button type="button" id="generatePassword" class="generate-btn">
+                                <i class="fas fa-dice"></i>
+                            </button>
+                            <button type="button" id="togglePassword" class="toggle-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="url" id="url" placeholder="https://example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notlar</label>
+                    <textarea id="notes" rows="3" placeholder="Ek bilgiler..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">İptal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Şifre Detay Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="detailTitle">Şifre Detayları</h3>
+                <button id="closeDetailModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="detail-content">
+                <div class="detail-item">
+                    <label>Başlık:</label>
+                    <span id="detailTitleText"></span>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Kategori:</label>
+                    <span id="detailCategory"></span>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Kullanıcı Adı:</label>
+                    <div class="copyable-field">
+                        <span id="detailUsername"></span>
+                        <button type="button" class="copy-btn" data-field="username">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Şifre:</label>
+                    <div class="copyable-field">
+                        <span id="detailPassword"></span>
+                        <button type="button" class="copy-btn" data-field="password">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <label>URL:</label>
+                    <span id="detailUrl"></span>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Notlar:</label>
+                    <span id="detailNotes"></span>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Oluşturulma:</label>
+                    <span id="detailCreated"></span>
+                </div>
+                
+                <div class="detail-item">
+                    <label>Güncellenme:</label>
+                    <span id="detailUpdated"></span>
+                </div>
+            </div>
+            
+            <div class="detail-actions">
+                <button type="button" id="editPasswordBtn" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Düzenle
+                </button>
+                <button type="button" id="deletePasswordBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kategori Yönetimi Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">Kategori Yönetimi</h3>
+                <button id="closeCategoryModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="category-management">
+                <div class="category-actions">
+                    <button id="addCategoryBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Yeni Kategori
+                    </button>
+                </div>
+                
+                <div id="categoriesList" class="categories-list">
+                    <!-- Kategoriler buraya dinamik olarak eklenecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kategori Ekleme/Düzenleme Modal -->
+    <div id="categoryFormModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryFormTitle">Yeni Kategori</h3>
+                <button id="closeCategoryFormModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="categoryForm" class="category-form">
+                <input type="hidden" id="categoryId">
+                
+                <div class="form-group">
+                    <label for="categoryName">Kategori Adı *</label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoryColor">Renk</label>
+                    <input type="color" id="categoryColor" value="#007bff">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancelCategoryBtn" class="btn btn-secondary">İptal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Kategori Silme Onay Modal -->
+    <div id="deleteCategoryModal" class="modal">
+        <div class="modal-content delete-confirmation-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Kategori Silme Onayı</h3>
+                <button id="closeDeleteCategoryModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="delete-confirmation-content">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4>Bu kategoriyi silmek istediğinizden emin misiniz?</h4>
+                                        <p id="deleteCategoryMessage">Bu kategoriyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
+                
+                <div class="category-info-preview">
+                    <div class="category-color-preview" id="deleteCategoryColor"></div>
+                    <span id="deleteCategoryName"></span>
+                </div>
+            </div>
+            
+            <div class="delete-confirmation-actions">
+                <button type="button" id="cancelDeleteCategoryBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button type="button" id="confirmDeleteCategoryBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Evet, Sil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Şifre Silme Onay Modal -->
+    <div id="deletePasswordModal" class="modal">
+        <div class="modal-content delete-confirmation-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Şifre Silme Onayı</h3>
+                <button id="closeDeletePasswordModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="delete-confirmation-content">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4>Bu şifreyi silmek istediğinizden emin misiniz?</h4>
+                <p id="deletePasswordMessage">Bu işlem geri alınamaz.</p>
+                
+                <div class="password-info-preview">
+                    <div class="password-title-preview" id="deletePasswordTitle"></div>
+                    <div class="password-category-preview" id="deletePasswordCategory"></div>
+                </div>
+            </div>
+            
+            <div class="delete-confirmation-actions">
+                <button type="button" id="cancelDeletePasswordBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button type="button" id="confirmDeletePasswordBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Evet, Sil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ayarlar Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> Uygulama Ayarları</h3>
+                <button id="closeSettingsModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h4><i class="fas fa-database"></i> Veritabanı Bilgileri</h4>
+                    <div class="db-info">
+                        <div class="db-item">
+                            <label>Veritabanı Konumu:</label>
+                            <span id="dbPath" class="db-path"></span>
+                            <button type="button" id="copyDbPathBtn" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="db-item">
+                            <label>Veritabanı Boyutu:</label>
+                            <span id="dbSize">-</span>
+                        </div>
+                        <div class="db-item">
+                            <label>Son Güncelleme:</label>
+                            <span id="lastUpdate">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4><i class="fas fa-tools"></i> Bakım İşlemleri</h4>
+                    <div class="maintenance-actions">
+                        <button type="button" id="updateDbBtn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            Veritabanını Güncelle
+                        </button>
+                        <button type="button" id="checkDbBtn" class="btn btn-info">
+                            <i class="fas fa-check-circle"></i>
+                            Veritabanı Kontrolü
+                        </button>
+                        <button type="button" id="optimizeDbBtn" class="btn btn-success">
+                            <i class="fas fa-rocket"></i>
+                            Veritabanını Optimize Et
+                        </button>
+                        <button type="button" id="migratePasswordsBtn" class="btn btn-warning">
+                            <i class="fas fa-sync-alt"></i>
+                            Şifreleri Migre Et
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4><i class="fas fa-chart-bar"></i> İstatistikler</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalPasswords">0</div>
+                            <div class="stat-label">Toplam Şifre</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalCategories">0</div>
+                            <div class="stat-label">Toplam Kategori</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="dbVersion">1.0</div>
+                            <div class="stat-label">DB Versiyon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-actions">
+                <button type="button" id="closeSettingsBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Geliştirici Ana Şifresi Modal -->
+    <div id="developerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-shield"></i> Geliştirici Erişimi</h3>
+                <button id="closeDeveloperModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="developer-content">
+                <div class="developer-section">
+                    <h4><i class="fas fa-key"></i> Geliştirici Ana Şifresi</h4>
+                    <p class="developer-info">
+                        Bu özellik sadece geliştirici tarafından kullanılır. 
+                        Ana şifrenizi unuttuysanız, geliştirici ana şifresi ile erişim sağlayabilirsiniz.
+                    </p>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-user-shield"></i>
+                        <input type="password" id="developerPassword" placeholder="Geliştirici Ana Şifresini Girin" required>
+                    </div>
+                    
+                    <button type="button" id="developerLoginBtn" class="btn btn-warning">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Geliştirici Girişi
+                    </button>
+                </div>
+                
+                <div class="developer-contact">
+                    <h4><i class="fas fa-phone"></i> İletişim</h4>
+                    <p>Ana şifrenizi unuttuysanız, geliştirici ile iletişime geçin:</p>
+                    
+                    <div class="qr-container">
+                        <div id="contactQR" class="qr-code"></div>
+                        <p class="qr-info">QR kodu tarayarak iletişim sayfasına gidin</p>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <a href="https://hdynamicx.com/#contact" target="_blank" class="contact-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            HDynamicX İletişim
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="developer-actions">
+                <button type="button" id="closeDeveloperBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Şifre Sıfırlama Modal -->
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> Ana Şifre Sıfırlama</h3>
+                <button id="closeResetPasswordModal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="reset-content">
+                <div class="reset-section">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Dikkat!</h4>
+                    <p class="reset-warning">
+                        Ana şifrenizi sıfırladığınızda, mevcut şifreleriniz korunur ancak 
+                        eski ana şifrenizle artık erişemezsiniz. Yeni ana şifrenizi güvenli bir yerde saklayın.
+                    </p>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-user-shield"></i>
+                        <input type="password" id="resetDeveloperPassword" placeholder="Geliştirici Ana Şifresini Tekrar Girin" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="newMasterPassword" placeholder="Yeni Ana Şifre" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="confirmNewMasterPassword" placeholder="Yeni Ana Şifreyi Tekrar Girin" required>
+                    </div>
+                    
+                    <button type="button" id="resetPasswordBtn" class="btn btn-danger">
+                        <i class="fas fa-key"></i>
+                        Ana Şifreyi Sıfırla
+                    </button>
+                </div>
+            </div>
+            
+            <div class="reset-actions">
+                <button type="button" id="cancelResetBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

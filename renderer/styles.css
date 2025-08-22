@@ -1,0 +1,1182 @@
+/* Reset ve Temel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Sayfa Yönetimi */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Login Sayfası */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.login-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.login-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.login-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Login Actions */
+.login-actions {
+    text-align: center;
+}
+
+.forgot-password {
+    margin-top: 15px;
+}
+
+.forgot-password-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-btn:hover {
+    color: #5a6fd8;
+}
+
+
+
+/* Company Info */
+.company-info {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+}
+
+.powered-by {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.company-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.company-link:hover {
+    color: #ffd700;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    opacity: 0.8;
+}
+
+/* Ana Sayfa */
+.main-header {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left h1 {
+    color: #667eea;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.header-center {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 30px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #e1e5e9;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.header-right {
+    display: flex;
+    gap: 15px;
+}
+
+/* Buton Stilleri */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover {
+    background: #138496;
+}
+
+/* Ana İçerik */
+.main-content {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    background: #f8f9fa;
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    border-right: 1px solid #e1e5e9;
+    padding: 20px 0;
+}
+
+.category-filter h3 {
+    padding: 0 20px 15px;
+    color: #333;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #e1e5e9;
+    margin-bottom: 15px;
+}
+
+.category-list {
+    list-style: none;
+}
+
+.category-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+}
+
+.category-item:hover {
+    background: #f8f9fa;
+    color: #667eea;
+}
+
+.category-item.active {
+    background: #667eea;
+    color: white;
+}
+
+.category-item i {
+    width: 16px;
+}
+
+.content-area {
+    flex: 1;
+    padding: 30px;
+}
+
+.passwords-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.passwords-header h2 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.password-count {
+    color: #666;
+    font-size: 0.9rem;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #e1e5e9;
+}
+
+/* Şifre Listesi */
+.passwords-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.password-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #e1e5e9;
+}
+
+.password-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: #667eea;
+}
+
+.password-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.password-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.password-category {
+    font-size: 0.8rem;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.password-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.password-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.password-info span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.password-info i {
+    width: 16px;
+    margin-right: 8px;
+    color: #999;
+}
+
+/* Boş Durum */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #999;
+}
+
+/* Modal Stilleri */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal dışına tıklayarak kapatma için */
+.modal.active .modal-content {
+    position: relative;
+    z-index: 1001;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e1e5e9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #333;
+    background: #f8f9fa;
+}
+
+/* Form Stilleri */
+.password-form {
+    padding: 30px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.password-input-group {
+    position: relative;
+    display: flex;
+    gap: 10px;
+}
+
+.password-input-group input {
+    flex: 1;
+}
+
+.generate-btn,
+.toggle-btn {
+    padding: 12px 15px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    background: #5a6268;
+}
+
+.toggle-btn:hover {
+    background: #5a6268;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5e9;
+}
+
+/* Detay Modal */
+.detail-content {
+    padding: 30px;
+}
+
+.detail-item {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.detail-item label {
+    font-weight: 600;
+    color: #333;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.detail-item span {
+    color: #666;
+    flex: 1;
+}
+
+.copyable-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.copy-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.copy-btn:hover {
+    background: #218838;
+}
+
+.detail-actions {
+    padding: 20px 30px;
+    border-top: 1px solid #e1e5e9;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Kategori Yönetimi Stilleri */
+.category-management {
+    padding: 30px;
+}
+
+/* Kategori Silme Onay Modal Stilleri */
+.delete-confirmation-modal {
+    max-width: 500px !important;
+}
+
+.delete-confirmation-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.warning-icon {
+    font-size: 4rem;
+    color: #ffc107;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+.warning-icon i {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.delete-confirmation-content h4 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.delete-confirmation-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.category-info-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.category-info-preview .category-color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.category-info-preview span {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.password-info-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.password-title-preview {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.password-category-preview {
+    font-size: 0.9rem;
+    color: #666;
+    background: #e9ecef;
+    padding: 5px 12px;
+    border-radius: 15px;
+}
+
+.delete-confirmation-actions {
+    padding: 20px 30px;
+    border-top: 1px solid #e1e5e9;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.delete-confirmation-actions .btn {
+    min-width: 120px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.category-actions {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e5e9;
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category-item-manage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.category-color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.category-name-manage {
+    font-weight: 600;
+    color: #333;
+}
+
+.category-actions-manage {
+    display: flex;
+    gap: 10px;
+}
+
+.category-form {
+    padding: 30px;
+}
+
+.category-form .form-group {
+    margin-bottom: 20px;
+}
+
+.category-form .form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5e9;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Kategori adı uyarı stilleri */
+.category-name-warning {
+    animation: fadeIn 0.3s ease;
+    padding: 5px 0;
+}
+
+/* Ayarlar Modal Stilleri */
+.settings-content {
+    padding: 30px;
+}
+
+.settings-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e5e9;
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.settings-section h4 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-section h4 i {
+    color: #667eea;
+}
+
+.db-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.db-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+}
+
+.db-item label {
+    font-weight: 600;
+    color: #333;
+    min-width: 150px;
+}
+
+.db-path {
+    font-family: 'Courier New', monospace;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #e1e5e9;
+    flex: 1;
+    word-break: break-all;
+    font-size: 0.9rem;
+}
+
+.maintenance-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.maintenance-actions .btn {
+    justify-content: flex-start;
+    padding: 15px 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.settings-actions {
+    padding: 20px 30px;
+    border-top: 1px solid #e1e5e9;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .header-center {
+        margin: 0;
+        order: 3;
+        width: 100%;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e1e5e9;
+    }
+    
+    .passwords-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .login-form {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .passwords-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .detail-item label {
+        width: auto;
+    }
+}
+
+
+
+.developer-content,
+.reset-content {
+    padding: 30px;
+}
+
+.developer-section,
+.reset-section {
+    margin-bottom: 25px;
+}
+
+.developer-info,
+.reset-warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #856404;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.reset-warning {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.developer-actions,
+.reset-actions {
+    padding: 20px 30px;
+    border-top: 1px solid #e1e5e9;
+    display: flex;
+    justify-content: space-between;
+}
+
+.developer-actions {
+    justify-content: center;
+}
+
+/* Developer Contact */
+.developer-contact {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5e9;
+}
+
+.developer-contact h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.developer-contact p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.qr-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+    background: #f8f9fa;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #667eea;
+}
+
+.qr-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid #667eea;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+#developerModal .input-group,
+#resetPasswordModal .input-group {
+    margin-bottom: 20px;
+}
+
+#developerModal .btn,
+#resetPasswordModal .btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#resetPasswordModal .btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+#resetPasswordModal .btn-danger:hover {
+    background: #c82333;
+}
